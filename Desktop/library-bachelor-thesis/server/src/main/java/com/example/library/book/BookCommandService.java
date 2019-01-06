@@ -11,21 +11,17 @@ class BookCommandService {
     private BookRepository bookRepository;
 
     void addBook(Book book) {
-        Book foundBook = bookRepository.getOne(book.getISBN());
-        if (foundBook == null) {
-            throw new DataValidationException("You can't add Book without ISBN number.");
-        }
         bookRepository.save(book);
     }
 
     void modifyBook(Book modifiedBook) {
-        validateBookISBN(modifiedBook);
-        Book bookFound = bookRepository.getOne(modifiedBook.getISBN());
+        validateBookId(modifiedBook);
+        Book bookFound = bookRepository.getOne(modifiedBook.getId());
         modifyPropertiesIfChanged(bookFound, modifiedBook);
     }
 
     void removeBook(Book book) {
-        validateBookISBN(book);
+        validateBookId(book);
         bookRepository.delete(book);
     }
 
@@ -35,11 +31,11 @@ class BookCommandService {
 
     private Book modifyPropertiesIfChanged(Book original, Book modified) {
         Book resultBook = original;
-        if (original.getISBN() != modified.getISBN()) {
+        if (original.getId() != modified.getId()) {
             throw new DataValidationException("You can't modify Book's ISBN number");
         }
 
-        resultBook.setISBN(original.getISBN());
+        resultBook.setId(original.getId());
         if (modified.getTitle() != null &&  !(original.getTitle().equals(modified.getTitle()))) {
             resultBook.setTitle(modified.getTitle());
         } else {
@@ -49,8 +45,8 @@ class BookCommandService {
         return resultBook;
     }
 
-    private void validateBookISBN(Book book) {
-        Book foundBook = bookRepository.getOne(book.getISBN());
+    private void validateBookId(Book book) {
+        Book foundBook = bookRepository.getOne(book.getId());
         if (foundBook == null) {
             throw new DataValidationException("Invalid Book id. Doesn't exist in database");
         }

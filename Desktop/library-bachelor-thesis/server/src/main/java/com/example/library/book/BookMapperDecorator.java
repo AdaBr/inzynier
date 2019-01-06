@@ -1,5 +1,6 @@
 package com.example.library.book;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,18 +15,25 @@ class BookMapperDecorator implements BookMapper {
 
     @Override
     public BookDto bookToBookDto(Book book) {
-        BookDto bookDto = delegate.bookToBookDto(book);
-        bookDto.setTitle(book.getTitle());
-        bookDto.setTitle(book.getTitle());
+        BookDto bookDto = new BookDto();
+        BeanUtils.copyProperties(book, bookDto);
+
+        //BookDto bookDto = delegate.bookToBookDto(book);
+        //bookDto.setTitle(book.getTitle());
+
         return bookDto;
     }
 
     //to bybły new String  book.setTitle(new String(bookDto.getTitle()));
     @Override
-    public Book bookDtoToBook(BookDto bookDto) {
-        Book book = delegate.bookDtoToBook(bookDto);
-        book.setTitle(bookDto.getTitle());
-        book.setTitle(bookDto.getTitle());
+        public Book bookDtoToBook(BookDto bookDto) {
+
+        Book book = new Book();
+        BeanUtils.copyProperties(bookDto, book);
+
+        //Book book = delegate.bookDtoToBook(bookDto);
+        ///book.setTitle(bookDto.getTitle());
+
         return book;
     }
 

@@ -15,13 +15,15 @@ public class BookQueryService {
         return bookRepository.findAll();
     }
 
+
     Book getBook(Book book) {
-        Book result = bookRepository.findById(book.getISBN());
+        Book result = bookRepository.getOne(book.getId());
         return result;
     }
 
     Book getBook(Long id) {
-        return bookRepository.findOne(id);
+        return bookRepository.getOne(id);
     }
+
 
 }
