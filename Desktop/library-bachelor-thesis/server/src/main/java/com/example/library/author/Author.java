@@ -3,7 +3,7 @@ package com.example.library.author;
 import javax.persistence.*;
 
 @Entity
-class Author {
+public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

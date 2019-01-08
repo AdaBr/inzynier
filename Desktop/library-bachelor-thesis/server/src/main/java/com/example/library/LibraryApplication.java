@@ -11,12 +11,12 @@ public class LibraryApplication {
 		SpringApplication.run(LibraryApplication.class, args);
 	}
 
-
-/*	@Bean
+/*
+	@Bean
 	public DevelopmentDataLoader dataLoader() {
 		return new DevelopmentDataLoader();
 	}
-	*/
+*/
 
 
 }

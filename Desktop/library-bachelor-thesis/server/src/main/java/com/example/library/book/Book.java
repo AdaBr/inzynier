@@ -1,8 +1,9 @@
 package com.example.library.book;
 
 
+import com.example.library.author.Author;
+
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,15 +17,23 @@ public class Book {
 
     private String title;
 
-    @ElementCollection
-    private List<Long> authorsID = new ArrayList<>();
+
+    //@Enumerated
+    //private Status status;
+
+    //private String adressURLOfResource;
+
+    //private byte[] image;
 
 
     public Book() {
 
     }
 
-    public Book(String ISBN, String title, List<Long> authorsId) {
+    public Book(Long id, String ISBN, String title) {
+
+        this.id = id;
+        this.ISBN = ISBN;
         this.title = title;
     }
 
@@ -40,14 +49,9 @@ public class Book {
         return title;
     }
 
-    public List<Long> getAuthorsId() {
-        return authorsID;
-    }
-
     void setId(Long id) {
         this.id = id;
     }
-
 
     public void setISBN(String ISBN) {
         this.ISBN = ISBN;
@@ -57,9 +61,5 @@ public class Book {
         this.title = title;
     }
 
-
-    public void setAuthorsId(List<Long> authorsId) {
-        this.authorsID = authorsId;
-    }
 
 }

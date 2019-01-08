@@ -11,14 +11,15 @@ public class BookDto {
 
     private String title;
 
-    private List<Long> authorsID;
-
 
     public BookDto() {
 
     }
 
     public BookDto(String title) {
+
+        this.id = id;
+        this.ISBN = ISBN;
         this.title = title;
     }
 
@@ -34,11 +35,6 @@ public class BookDto {
         return title;
     }
 
-
-    public List<Long> getAuthorsID() {
-        return authorsID;
-    }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -51,7 +47,4 @@ public class BookDto {
         this.title = title;
     }
 
-    public void setAuthorsID(List<Long> authorsID) {
-        this.authorsID = authorsID;
-    }
 }
