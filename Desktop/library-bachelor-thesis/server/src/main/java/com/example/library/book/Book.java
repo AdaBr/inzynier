@@ -1,10 +1,7 @@
 package com.example.library.book;
 
 
-import com.example.library.author.Author;
-
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class Book {
@@ -17,12 +14,12 @@ public class Book {
 
     private String title;
 
-
-    //@Enumerated
-    //private Status status;
+    @Enumerated
+    private Category category;
 
     //private String adressURLOfResource;
 
+    //@Lob
     //private byte[] image;
 
 
@@ -61,5 +58,11 @@ public class Book {
         this.title = title;
     }
 
+    public Category getCategory() {
+        return category;
+    }
 
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 }

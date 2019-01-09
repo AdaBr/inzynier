@@ -4,6 +4,7 @@ import com.example.library.commons.DataValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,8 +19,9 @@ class AuthorService {
     }
 
     Author getAuthor(Long id) {
-        return this.authorRepository.findById(id).orElse(null);
+        return this.authorRepository.findById(id).orElseThrow(() ->new AuthorNotFoundException(id));
     }
+
 
 
     List<Author> getAll() {

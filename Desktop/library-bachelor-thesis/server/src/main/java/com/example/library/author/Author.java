@@ -3,11 +3,13 @@ package com.example.library.author;
 import javax.persistence.*;
 
 @Entity
+@Table (name="author")
 public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
 
     @Embedded
     private Surname surname;

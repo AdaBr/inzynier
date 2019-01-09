@@ -1,4 +1,4 @@
-package com.example.library.AuthorBook;
+package com.example.library.authorbook;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

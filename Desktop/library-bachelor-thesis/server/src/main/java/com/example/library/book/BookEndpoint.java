@@ -9,16 +9,35 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/book/query")
+@RequestMapping("books")
 @CrossOrigin
 class BookEndpoint {
 
     @Autowired
     private BookFacade bookFacade;
 
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<?> getBook(@RequestBody BookDto bookDto) {
-        return new ResponseEntity<>(bookFacade.getBook(bookDto), HttpStatus.OK);
+    @RequestMapping(value = "{bookID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<?> getBook(@PathVariable("bookID") Long id) {
+        return new ResponseEntity<>(bookFacade.getBook(id), HttpStatus.OK);
+    }
+
+
+    @RequestMapping(value = "query/{title}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<?> getBookByTitle(@PathVariable("title") String title) {
+        return new ResponseEntity<>(bookFacade.getBookByTitle(title), HttpStatus.OK);
+    }
+
+    /*
+    @RequestMapping(value = "querys/{author}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<?> getBookByAuthorName(@PathVariable("author") String author) {
+        return new ResponseEntity<>(bookFacade.getBookByAuthor(author), HttpStatus.OK);
+    }
+    */
+
+
+    @RequestMapping(value = "querys/{search}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<?> getBookBySearach(@PathVariable("search") String search) {
+        return new ResponseEntity<>(bookFacade.getBookBySearch(search), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

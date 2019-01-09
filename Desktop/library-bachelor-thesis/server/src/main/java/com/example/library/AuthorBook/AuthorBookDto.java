@@ -1,4 +1,4 @@
-package com.example.library.AuthorBook;
+package com.example.library.authorbook;
 
 public class AuthorBookDto {
 

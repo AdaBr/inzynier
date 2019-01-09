@@ -1,8 +1,9 @@
-package com.example.library.AuthorBook;
+package com.example.library.authorbook;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,5 +31,18 @@ public class AuthorBookService {
         this.authorBookRepository.deleteAll();
     }
 
+
+    public List<Long> getBooksIDWithAuthorsID(List<Long> authorsID) {
+        List<Long> booksID = new ArrayList<Long>();
+
+        for (AuthorBook authorBook : this.authorBookRepository.findAll()) {
+            for (Long authorID : authorsID) {
+                if (authorBook.getAuthorBookIdentity().getAuthorID().equals(authorID)) {
+                    booksID.add(authorBook.getAuthorBookIdentity().getBookID());
+                }
+            }
+        }
+        return booksID;
+    }
 
 }

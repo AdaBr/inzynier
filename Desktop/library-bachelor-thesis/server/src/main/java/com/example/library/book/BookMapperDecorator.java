@@ -16,11 +16,13 @@ class BookMapperDecorator implements BookMapper {
     @Override
     public BookDto bookToBookDto(Book book) {
         BookDto bookDto = new BookDto();
-        BeanUtils.copyProperties(book, bookDto);
+        BeanUtils.copyProperties(book, bookDto, "Category");
 
         //BookDto bookDto = delegate.bookToBookDto(book);
         //bookDto.setTitle(book.getTitle());
 
+        //TO DO powinno kopiwoac tym beanutils
+        bookDto.setId(book.getId());
         return bookDto;
     }
 

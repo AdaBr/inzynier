@@ -15,6 +15,9 @@ public class BookFacade {
     private BookQueryService bookQueryService;
 
     @Autowired
+    private BookSearchService bookSearchService;
+
+    @Autowired
     private BookMapperDecorator mapper;
 
     public void addBook(BookDto bookDto) {
@@ -47,6 +50,15 @@ public class BookFacade {
 
     public void removeAllBooks() {
         bookCommandService.removeAllBooks();
+    }
+
+
+    public List<BookDto> getBookBySearch(String search) {
+        return mapper.booksToBookDtos(bookSearchService.getBookBySearch(search));
+    }
+
+    public List<BookDto> getBookByTitle(String search) {
+        return mapper.booksToBookDtos(bookSearchService.getBookByTitle(search));
     }
 }
 

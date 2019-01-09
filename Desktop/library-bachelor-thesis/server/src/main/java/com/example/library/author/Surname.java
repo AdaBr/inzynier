@@ -44,6 +44,11 @@ class Surname {
     }
 
     @Override
+    public String toString() {
+        return value;
+    }
+
+    @Override
     public int hashCode() {
         return value != null ? value.hashCode() : 0;
     }

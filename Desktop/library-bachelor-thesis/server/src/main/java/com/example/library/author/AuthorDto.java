@@ -13,7 +13,7 @@ public class AuthorDto {
     }
 
     AuthorDto(String surname, String forename) {
-        this.id = id;
+
         this.surname = surname;
         this.forename = forename;
     }

@@ -1,8 +1,6 @@
 package com.example.library.book;
 
 
-import java.util.List;
-
 public class BookDto {
 
     private Long id;
@@ -11,12 +9,14 @@ public class BookDto {
 
     private String title;
 
+    private String category;
+
 
     public BookDto() {
 
     }
 
-    public BookDto(String title) {
+    public BookDto(Long id, String ISBN, String title) {
 
         this.id = id;
         this.ISBN = ISBN;
@@ -45,6 +45,23 @@ public class BookDto {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "BookDto{" +
+                "id=" + id +
+                ", ISBN='" + ISBN + '\'' +
+                ", title='" + title + '\'' +
+                '}';
     }
 
 }

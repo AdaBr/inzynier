@@ -11,6 +11,8 @@ class Forename {
     @Column(name = "FORENAME")
     private String value;
 
+
+
     Forename() {
 
     }
@@ -42,6 +44,11 @@ class Forename {
         Forename forename = (Forename) o;
 
         return value != null ? value.equals(forename.value) : forename.value == null;
+    }
+
+    @Override
+    public String toString() {
+        return value;
     }
 
     @Override

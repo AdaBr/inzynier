@@ -45,4 +45,8 @@ public class AuthorFacade {
         this.authorService.removeAllAuthors();
     }
 
+    public List<AuthorDto> getAuthorByName(String name) {
+        return this.mapper.authorsToAuthorDtos(authorQueryService.getAuthorByName(name));
+    }
+
 }

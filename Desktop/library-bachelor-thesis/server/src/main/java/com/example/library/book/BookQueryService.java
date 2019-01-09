@@ -1,8 +1,11 @@
 package com.example.library.book;
 
+import com.example.library.author.AuthorSearchService;
+import com.example.library.authorbook.AuthorBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -11,18 +14,20 @@ public class BookQueryService {
     @Autowired
     private BookRepository bookRepository;
 
+
     List<Book> getAllBooks() {
-        return bookRepository.findAll();
+        List<Book> list=this.bookRepository.findAll();
+        System.out.println("test");
+        return this.bookRepository.findAll();
     }
 
 
     Book getBook(Book book) {
-        Book result = bookRepository.getOne(book.getId());
-        return result;
+        return this.bookRepository.findById(book.getId()).orElseThrow(()-> new BookNotFoundExcpetion(book.getId()));
     }
 
     Book getBook(Long id) {
-        return bookRepository.getOne(id);
+        return this.bookRepository.findById(id).orElseThrow(()-> new BookNotFoundExcpetion(id));
     }
 
 
