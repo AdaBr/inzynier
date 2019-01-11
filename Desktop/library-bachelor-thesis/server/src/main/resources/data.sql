@@ -16,11 +16,13 @@ VALUES
 
 
 INSERT INTO authorbook
-  (author_id, book_id)
+  (authorID, bookID)
 VALUES
   (1, 1),
   (1, 2),
   (3, 2),
   (4, 3),
   (5, 3);
+
+
 

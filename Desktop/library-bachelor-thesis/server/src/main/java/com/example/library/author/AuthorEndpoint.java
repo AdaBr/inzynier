@@ -17,19 +17,22 @@ class AuthorEndpoint {
     private AuthorFacade authorFacade;
 
     @RequestMapping(value = "{authorID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<?> getPerson(@PathVariable("authorID") Long id) {
+    ResponseEntity<?> getAuthor(@PathVariable("authorID") Long id) {
         return new ResponseEntity<>(authorFacade.getAuthor(id), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/query/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<?> getPerson(@PathVariable("name") String name) {
+    @RequestMapping(value = "/querys/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<?> getAuthorsByName(@PathVariable("name") String name) {
+        return new ResponseEntity<>(authorFacade.getAuthorByName(name), HttpStatus.OK);
+        /*
         try {
-            return new ResponseEntity<>(authorFacade.getAuthorByName(name), HttpStatus.OK);
+
         }
         catch (AuthorNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Could not find author " + "name" , e);
 
         }
+        */
     }
 
     /*
@@ -40,8 +43,14 @@ class AuthorEndpoint {
 
     //@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<?> getAllPersons() {
+    ResponseEntity<?> getAllAuthors() {
         return new ResponseEntity<>(authorFacade.getAllAuthors(), HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/query/{bookID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<?> getAuthorsForBook(@PathVariable("bookID") Long id) {
+        return new ResponseEntity<>(authorFacade.getAuthorsForBook(id), HttpStatus.OK);
+    }
+
 
 }

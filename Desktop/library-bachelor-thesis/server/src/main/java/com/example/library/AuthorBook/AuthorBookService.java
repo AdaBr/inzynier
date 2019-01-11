@@ -17,17 +17,24 @@ public class AuthorBookService {
         this.authorBookRepository.save(authorBook);
     }
 
+    /*
     AuthorBook getAuthorBook(AuthorBookIdentity authorBookIdentity) {
         return this.authorBookRepository.findById(authorBookIdentity).orElse(null);
     }
 
-    List<AuthorBook> getAll() {
+    void getAuthorBook(AuthorBook authorBook) {
+
+        return this.authorBookRepository.finddById(authorBook.getAuthorBookIdentity());
+    }
+    */
+
+    List<AuthorBook> getAllAuthorBooks() {
         return this.authorBookRepository.findAll();
 
     }
 
 
-    void removeAllAuthors() {
+    void removeAllAuthorBooks() {
         this.authorBookRepository.deleteAll();
     }
 
@@ -44,5 +51,18 @@ public class AuthorBookService {
         }
         return booksID;
     }
+
+    public List<Long> getAuthorsIDWithBookID(Long id) {
+
+        List<Long> authorsID = new ArrayList<Long>();
+        for (AuthorBook authorBook : this.authorBookRepository.findAll()) {
+            if (authorBook.getAuthorBookIdentity().getBookID().equals(id)) {
+                authorsID.add(authorBook.getAuthorBookIdentity().getAuthorID());
+            }
+        }
+        return authorsID;
+    }
+
+
 
 }

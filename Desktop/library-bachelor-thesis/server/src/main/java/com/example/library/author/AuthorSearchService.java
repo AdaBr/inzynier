@@ -1,5 +1,7 @@
 package com.example.library.author;
 
+import com.example.library.authorbook.AuthorBook;
+import com.example.library.authorbook.AuthorBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,9 @@ public class AuthorSearchService {
     @Autowired
     private AuthorQueryService authorQueryService;
 
+    @Autowired
+    private AuthorBookService authorBookService;
+
     public List<Long> getAuthorsIDSearchByName(String name) {
 
         List<Long> authorsID = new ArrayList<Long>();
@@ -27,6 +32,15 @@ public class AuthorSearchService {
         return authorsID;
 
     }
+
+    public List<Author> getAuthorsForBook(Long id) {
+
+        List<Long> authorsID = authorBookService.getAuthorsIDWithBookID(id);
+        return  this.authorRepository.findAllById(authorsID);
+
+
+    }
+
 
 
 }

@@ -11,11 +11,11 @@ import java.util.Objects;
 @Embeddable
 public class AuthorBookIdentity implements Serializable {
 
-    @Column(name = "author_id")
+    @Column(name = "authorID")
     @NotNull
     private Long authorID;
 
-    @Column(name = "book_id")
+    @Column(name = "bookID")
     @NotNull
     private Long bookID;
 

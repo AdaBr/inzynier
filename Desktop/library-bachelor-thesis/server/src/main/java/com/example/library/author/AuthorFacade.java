@@ -15,6 +15,9 @@ public class AuthorFacade {
     private AuthorQueryService authorQueryService;
 
     @Autowired
+    private AuthorSearchService authorSearchService;
+
+    @Autowired
     private AuthorMapperDecorator mapper;
 
     public void addAuthor(AuthorDto authorDto) {
@@ -49,4 +52,8 @@ public class AuthorFacade {
         return this.mapper.authorsToAuthorDtos(authorQueryService.getAuthorByName(name));
     }
 
+    public List<AuthorDto> getAuthorsForBook(Long id) {
+
+        return this.mapper.authorsToAuthorDtos(authorSearchService.getAuthorsForBook(id));
+    }
 }
