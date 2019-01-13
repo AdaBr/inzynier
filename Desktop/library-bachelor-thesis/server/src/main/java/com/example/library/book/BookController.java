@@ -1,5 +1,7 @@
 package com.example.library.book;
 
+import com.example.library.model.Book;
+import com.example.library.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,9 +12,9 @@ import java.util.stream.Collectors;
 @RestController
 public class BookController {
 
-    @Autowired
-    private BookRepository repository;
+    private final BookRepository repository;
 
+    @Autowired
     public BookController(BookRepository repository) {
         this.repository = repository;
     }

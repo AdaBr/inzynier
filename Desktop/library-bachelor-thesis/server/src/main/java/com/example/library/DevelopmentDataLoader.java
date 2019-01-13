@@ -1,10 +1,9 @@
 package com.example.library;
 
-import com.example.library.author.AuthorDto;
-import com.example.library.author.AuthorFacade;
-import com.example.library.book.Book;
-import com.example.library.book.BookDto;
-import com.example.library.book.BookFacade;
+import com.example.library.repository.dto.AuthorDto;
+import com.example.library.service.facade.AuthorFacade;
+import com.example.library.repository.dto.BookDto;
+import com.example.library.service.facade.BookFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
