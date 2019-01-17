@@ -1,8 +1,8 @@
 package com.example.ada.library.api;
 
 import com.example.ada.library.activity.BooksListAdapter;
-import com.example.ada.library.entity.Author;
-import com.example.ada.library.entity.AuthorBook;
+import com.example.ada.library.model.Author;
+import com.example.ada.library.model.AuthorBook;
 import com.example.ada.library.utils.Constants;
 
 import java.util.List;
@@ -21,6 +21,7 @@ public class AuthorsBooksClientImp {
 
     BooksListAdapter booksListAdapter;
 
+    /*
     public void getAuthorsList() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
@@ -62,4 +63,5 @@ public class AuthorsBooksClientImp {
             }
         });
     }
+    */
 }

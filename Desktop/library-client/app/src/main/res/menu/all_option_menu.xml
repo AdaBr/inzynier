@@ -1,7 +1,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.ada.library.activity.MainActivity">
+    tools:context="com.example.ada.library.activity.BookDetailsActivityy">
+    <item
+        android:id="@+id/action_library"
+        android:orderInCategory="100"
+        android:title="Library"
+        app:showAsAction="never" />
     <item
         android:id="@+id/action_userbook"
         android:orderInCategory="100"
