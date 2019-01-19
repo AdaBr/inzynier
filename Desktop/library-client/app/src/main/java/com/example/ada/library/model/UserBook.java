@@ -1,5 +1,7 @@
 package com.example.ada.library.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 /**
@@ -20,13 +22,17 @@ public class UserBook {
 
     private String bookAuthors;
 
-    public UserBook(Long userID, Long bookID, String status, Date downloadDate, String bookTitle, String bookAuthors) {
+    @SerializedName("coverOfBook")
+    private String photo;
+
+    public UserBook(Long userID, Long bookID, String status, Date downloadDate, String bookTitle, String bookAuthors, String photo) {
         this.userID = userID;
         this.bookID = bookID;
         this.status = status;
         this.downloadDate = downloadDate;
         this.bookTitle = bookTitle;
         this.bookAuthors = bookAuthors;
+        this.photo = photo;
     }
 
     public UserBook(Long userID, Long bookID, String status, Date downloadDate) {
@@ -83,5 +89,13 @@ public class UserBook {
 
     public void setBookAuthors(String bookAuthors) {
         this.bookAuthors = bookAuthors;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 }

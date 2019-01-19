@@ -13,8 +13,8 @@ public class Book {
     @SerializedName("isbn")
     private String ISBN;
 
-    @SerializedName("dio")
-    private String DIO;
+    @SerializedName("doi")
+    private String DOI;
 
     private String title;
 
@@ -40,12 +40,12 @@ public class Book {
         this.ISBN = ISBN;
     }
 
-    public String getDIO() {
-        return DIO;
+    public String getDOI() {
+        return DOI;
     }
 
-    public void setDIO(String DIO) {
-        this.DIO = DIO;
+    public void setDOI(String DOI) {
+        this.DOI = DOI;
     }
 
     public void setTitle(String title) {

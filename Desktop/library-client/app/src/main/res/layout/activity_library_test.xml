@@ -27,44 +27,33 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
 
-
-
             <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-                <SearchView
-                    android:id="@+id/search_view"
-                    android:layout_width="330dp"
-                    android:layout_height="50dp"
-                    android:iconifiedByDefault="false"
-                    android:padding="10dp"
-                    android:queryBackground="@color/white"
-                    android:queryHint="@string/queryHint"
-                    android:textColor="@color/dark"
+                <ImageButton
+                    android:id="@+id/image_search"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@color/dark"
+                    app:srcCompat="@android:drawable/ic_menu_search" />
 
-                    >
+            </android.support.v7.widget.Toolbar>
 
-                </SearchView>
 
             <ImageButton
-                android:id="@+id/cancel_action"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:clickable="true"
-                app:srcCompat="@android:drawable/btn_dialog"
-                android:layout_gravity="right|center_vertical"
-                android:layout_marginBottom="50dp"
-                android:layout_marginRight="100dp"
-                android:background="@color/basis"
-                />
-
-
-
+                android:id="@+id/image_sort"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom|right"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="15dp"
+                android:background="@color/dark"
+                app:srcCompat="@android:drawable/ic_menu_sort_alphabetically" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
@@ -83,5 +72,36 @@
 
 
     </android.support.v4.widget.NestedScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+        <EditText
+            android:id="@+id/search_edit_frame"
+            android:layout_width="330dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="15dp"
+            android:background="@color/white"
+            android:drawableLeft="@android:drawable/ic_menu_search"
+            android:drawablePadding="22dp"
+            android:gravity="left|center"
+            android:hint="@string/queryHint"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:padding="5dp"
+            android:textColorHint="@android:color/darker_gray" />
+
+        <ImageButton
+            android:id="@+id/image_clear"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignRight="@+id/search_edit_frame"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="44dp"
+            app:srcCompat="@drawable/cancelbutton" />
+
+
+    </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>

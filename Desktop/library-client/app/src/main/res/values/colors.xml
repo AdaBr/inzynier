@@ -4,7 +4,12 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="white">#FFFFFF</color>
-    <color name="cyjan">#84ffff</color>
-    <color name="green">#80cbc4</color>
+
+
+    <color name="darkblue">#00BCD4</color>
+    <color name="dark">#00838F</color>
     <color name="basis">#b2dfd2</color>
+    <color name="blue">#80DEEA</color>
+    <color name="hell">#B2EBF2</color>
+    <color name="blueintensive">#64FFDA</color>
 </resources>

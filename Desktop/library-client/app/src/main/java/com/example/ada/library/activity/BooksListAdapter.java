@@ -13,12 +13,15 @@ import android.widget.Toast;
 
 import com.example.ada.library.R;
 import com.example.ada.library.api.ApiClient;
+import com.example.ada.library.api.FavoriteInterface;
 import com.example.ada.library.api.UserBookInterface;
 import com.example.ada.library.model.Book;
+import com.example.ada.library.model.Favorite;
 import com.example.ada.library.model.UserBook;
 import com.squareup.picasso.Downloader;
 import com.squareup.picasso.Picasso;
 
+import java.net.HttpURLConnection;
 import java.util.Date;
 import java.util.List;
 
@@ -61,8 +64,8 @@ public class BooksListAdapter extends RecyclerView.Adapter<BooksListAdapter.View
         //holder.currentBook = booksList.get(position);
         holder.title.setText(booksList.get(position).getTitle());
         holder.author.setText(booksList.get(position).getAuthorsNames());
-        String photoUrl= "https://ecsmedia.pl/c/instrukcja-obslugi-faceta-w-iext48615521.jpg";
-        Picasso.with(holder.photo.getContext()).load(photoUrl).into(holder.photo);
+        //String photoUrl= "https://ecsmedia.pl/c/instrukcja-obslugi-faceta-w-iext48615521.jpg";
+        Picasso.with(holder.photo.getContext()).load(booksList.get(position).getAddressURLOfPhoto()).into(holder.photo);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +75,7 @@ public class BooksListAdapter extends RecyclerView.Adapter<BooksListAdapter.View
                 intent.putExtra("title",booksList.get(position).getTitle());
                 intent.putExtra("authorsName",booksList.get(position).getAuthorsNames());
                 intent.putExtra("ISBN",booksList.get(position).getISBN());
-                intent.putExtra("DIO",booksList.get(position).getDIO());
+                intent.putExtra("DOI",booksList.get(position).getDOI());
                 intent.putExtra("photo",booksList.get(position).getAddressURLOfPhoto());
                 intent.putExtra("adressURL",booksList.get(position).getAdressURLOfResource());
                 mContext.startActivity(intent);
@@ -82,7 +85,7 @@ public class BooksListAdapter extends RecyclerView.Adapter<BooksListAdapter.View
         holder.download.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UserBook userBook= new UserBook(booksList.get(position).getId(), new Long(1), "DOWNLOADED", new Date());
+                UserBook userBook= new UserBook(new Long(1), booksList.get(position).getId(), "DOWNLOADED", new Date());
 
 
                 UserBookInterface userBookClient = ApiClient.getClient().create(UserBookInterface.class);
@@ -104,11 +107,37 @@ public class BooksListAdapter extends RecyclerView.Adapter<BooksListAdapter.View
             }
         });
 
+        holder.favorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Favorite favorite= new Favorite(new Long(1), booksList.get(position).getId());
+
+
+                FavoriteInterface favoriteClient = ApiClient.getClient().create(FavoriteInterface.class);
+                Call<Favorite> call = favoriteClient.addBookToFavorites(favorite);
+                call.enqueue(new Callback<Favorite>() {
+                    @Override
+                    public void onResponse(Call<Favorite> call, Response<Favorite> response) {
+                        //
+                        if (response.code()==HttpURLConnection.HTTP_OK) {
+                            Toast.makeText(mContext, "Book is add to favorite", Toast.LENGTH_LONG).show();
+                        }
+                        if (response.body()==null) {
+                            Toast.makeText(mContext, "Book has been already added to favorite", Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Favorite> call, Throwable t) {
+
+                        Toast.makeText(mContext, "Book has been already added to favorite", Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        });
+
 
     }
-
-
-
 
 
     @Override
@@ -117,25 +146,16 @@ public class BooksListAdapter extends RecyclerView.Adapter<BooksListAdapter.View
     }
 
 
-    public List<Book> getBookList(List<Book> books) {
-        return booksList;
-    }
-
-    public void getBooksBySearch(List<Book> books) {
-        booksList.addAll(books);
-    }
-
-
-
 
     class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView title;
         public final TextView author;
-        public final TextView isbn;
+        //public final TextView isbn;
         public final ImageView photo;
         public final ImageButton addToFavortie;
         public final ImageButton download;
+        public final ImageButton favorite;
 
 
         public ViewHolder(View view) {
@@ -143,10 +163,11 @@ public class BooksListAdapter extends RecyclerView.Adapter<BooksListAdapter.View
             mView = view;
             title = (TextView) view.findViewById(R.id.text_view_title);
             author = (TextView) view.findViewById(R.id.text_view_author);
-            isbn = (TextView) view.findViewById(R.id.text_view_isbn);
+            //isbn = (TextView) view.findViewById(R.id.text_view_isbn);
             photo = (ImageView) view.findViewById(R.id.image_view_book);
             addToFavortie = (ImageButton) view.findViewById(R.id.image_favorite);
             download = (ImageButton) view.findViewById(R.id.image_download);
+            favorite= (ImageButton) view.findViewById(R.id.image_favorite);
         }
 
     }

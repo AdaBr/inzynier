@@ -4,11 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -51,7 +47,7 @@ public class BookDetailsActivity extends AppCompatActivity {
         String title = i.getExtras().getString("title");
         String authors = i.getExtras().getString("authorsName");
         String isbn = i.getExtras().getString("ISBN");
-        String dio = i.getExtras().getString("DIO");
+        String dio = i.getExtras().getString("DOI");
         String photo = i.getExtras().getString("photo");
         String adressURL = i.getExtras().getString("adressURL");
 
@@ -62,12 +58,12 @@ public class BookDetailsActivity extends AppCompatActivity {
         TextView text_author= (TextView)findViewById(R.id.text_author);
         text_author.setText(authors);
         TextView text_isbn= (TextView)findViewById(R.id.text_isbn);
-        text_isbn.setText(isbn);
-        TextView text_dio= (TextView)findViewById(R.id.text_dio);
-        text_dio.setText(dio);
+        text_isbn.setText("ISBN: " + isbn);
+        TextView text_doi= (TextView)findViewById(R.id.text_doi);
+        text_doi.setText("DOI: " + dio);
         ImageView image = (ImageView) findViewById(R.id.image_book);
 
-        //Picasso.get().load(photo).into(image);
+        Picasso.with(image.getContext()).load(photo).into(image);
 
 
 

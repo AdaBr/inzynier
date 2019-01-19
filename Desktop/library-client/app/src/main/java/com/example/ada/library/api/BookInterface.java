@@ -17,7 +17,7 @@ public interface BookInterface {
     @GET("books")
     Call<List<Book>> getAllBooks();
 
-    @GET("books/{query}")
+    @GET("books/query/{query}")
     Call<List<Book>> getBookBySearach(@Path("query") String query);
 
     @GET("books/{id}")

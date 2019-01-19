@@ -1,4 +1,4 @@
-package com.example.ada.library.api;
+package com.example.ada.library.nieuzywane;
 
 import com.example.ada.library.model.Author;
 import com.example.ada.library.model.AuthorBook;
