@@ -2,6 +2,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.ada.library.activity.MainActivity">
+
+    <item
+        android:id="@+id/action_basket"
+        android:orderInCategory="100"
+        android:title="Basket"
+        app:showAsAction="never" />
+
     <item
         android:id="@+id/action_userbook"
         android:orderInCategory="100"

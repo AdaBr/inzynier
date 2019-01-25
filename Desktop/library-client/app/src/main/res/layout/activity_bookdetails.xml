@@ -63,7 +63,8 @@
         android:layout_marginTop="15dp"
         android:text="TextView"
         android:layout_below="@+id/relativeLayout"
-        android:layout_marginLeft="10dp"/>
+        android:layout_marginLeft="10dp"
+        android:textSize="16sp"/>
 
 
     <TextView
@@ -73,17 +74,20 @@
         android:text="TextView"
         android:layout_below="@+id/text_isbn"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"/>
+        android:layout_marginLeft="10dp"
+        android:textSize="16sp"/>
 
     <TextView
-        android:id="@+id/text_descr"
+        android:id="@+id/text_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="10dp"
-        android:layout_below="@+id/text_doi"
-         />
+        android:layout_marginRight="15dp"
+        android:textSize="25sp"
+        android:layout_above="@+id/button_buy"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="40dp" />
 
     <Button
         android:id="@+id/button_favorite"
@@ -95,12 +99,12 @@
         android:background="@color/basis"/>
 
     <Button
-        android:id="@+id/button_downladed"
+        android:id="@+id/button_buy"
         android:layout_width="205dp"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:text="Download"
+        android:text="Add to basket"
         android:background="@color/basis"/>
 
 

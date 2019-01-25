@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Book>> call, Throwable t) {
                 progressDialog.dismiss();
-                Toast.makeText(getApplicationContext(), "There are no books avaliable", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "There are no books avaliable", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -161,12 +161,22 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
+        if (id == R.id.action_basket) {
+
+            Intent i = new Intent(context, BasketActivity.class);
+            //i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
+            startActivity(i);
+            //overridePendingTransition(R.animator.animacja, R.animator.animacja);
+
+        }
+
         if (id == R.id.action_userbook) {
 
             Intent i = new Intent(context, UserBookActivity.class);
             //i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
-            i.putExtra("id", id);
+            i.putExtra("position", 0);
             startActivity(i);
             //overridePendingTransition(R.animator.animacja, R.animator.animacja);
 

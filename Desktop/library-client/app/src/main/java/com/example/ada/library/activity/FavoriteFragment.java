@@ -62,6 +62,8 @@ public class FavoriteFragment extends Fragment {
         final View view = inflater.inflate(R.layout.user_tabs_fragment, container, false);
 
 
+        context=this.getContext();
+
         final RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyle_userbooks);
 
         recyclerView.setHasFixedSize(true);
@@ -80,7 +82,7 @@ public class FavoriteFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<Favorite>> call, Throwable t) {
-                Toast.makeText(view.getContext(), "There are no books avaliable", Toast.LENGTH_LONG).show();
+                Toast.makeText(view.getContext(), "There are no books avaliable", Toast.LENGTH_SHORT).show();
             }
         });
 

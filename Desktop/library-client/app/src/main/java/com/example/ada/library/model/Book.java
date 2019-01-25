@@ -24,6 +24,8 @@ public class Book {
 
     private String authorsNames;
 
+    private float price;
+
     public Book(Long id, String title, String authors, String isbn) {
         this.id = id;
         this.title = title;
@@ -99,4 +101,11 @@ public class Book {
     }
 
 
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
 }

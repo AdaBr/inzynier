@@ -5,6 +5,12 @@
     tools:context="com.example.ada.library.activity.UserBookActivity">
 
     <item
+        android:id="@+id/action_basket"
+        android:orderInCategory="100"
+        android:title="Basket"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/action_library"
         android:orderInCategory="100"
         android:title="Library"

@@ -37,9 +37,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="9dp"
                 android:text="TextView"
-                android:layout_above="@+id/text_view_author"
+                android:textSize="18dp"
+                android:layout_alignParentTop="true"
                 android:layout_toEndOf="@+id/image_view_book"
-                android:layout_marginBottom="11dp" />
+                android:layout_marginTop="20dp" />
 
             <TextView
                 android:id="@+id/text_view_author"
@@ -47,16 +48,18 @@
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@+id/text_view_title"
                 android:layout_centerVertical="true"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textSize="14dp"/>
 
             <TextView
                 android:id="@+id/text_view_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/text_view_author"
                 android:text="TextView"
-                android:layout_alignTop="@+id/image_download"
-                android:layout_alignBottom="@+id/image_favorite" />
+                android:layout_alignParentBottom="true"
+                android:layout_alignStart="@+id/text_view_author"
+                android:layout_marginBottom="8dp"
+                android:textSize="14dp"/>
 
             <ImageButton
                 android:id="@+id/image_remove"
@@ -66,15 +69,6 @@
                 android:background="@color/white"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true" />
-
-            <ImageButton
-                android:id="@+id/image_buy"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                app:srcCompat="@drawable/basket"
-                android:layout_alignParentBottom="true"
-                android:layout_toStartOf="@+id/image_remove"
-                android:layout_marginEnd="12dp" />
 
 
         </RelativeLayout>

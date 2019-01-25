@@ -13,8 +13,10 @@ import android.widget.Toast;
 
 import com.example.ada.library.R;
 import com.example.ada.library.api.ApiClient;
+import com.example.ada.library.api.BasketBookInterface;
 import com.example.ada.library.api.FavoriteInterface;
 import com.example.ada.library.api.UserBookInterface;
+import com.example.ada.library.model.BasketBook;
 import com.example.ada.library.model.Book;
 import com.example.ada.library.model.Favorite;
 import com.example.ada.library.model.UserBook;
@@ -64,6 +66,7 @@ public class BooksListAdapter extends RecyclerView.Adapter<BooksListAdapter.View
         //holder.currentBook = booksList.get(position);
         holder.title.setText(booksList.get(position).getTitle());
         holder.author.setText(booksList.get(position).getAuthorsNames());
+        holder.price.setText(booksList.get(position).getPrice() + " PLN");
         //String photoUrl= "https://ecsmedia.pl/c/instrukcja-obslugi-faceta-w-iext48615521.jpg";
         Picasso.with(holder.photo.getContext()).load(booksList.get(position).getAddressURLOfPhoto()).into(holder.photo);
 
@@ -71,43 +74,49 @@ public class BooksListAdapter extends RecyclerView.Adapter<BooksListAdapter.View
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, BookDetailsActivity.class);
-                intent.putExtra("id", position);
+                intent.putExtra("position", position);
+                intent.putExtra("id", booksList.get(position).getId());
                 intent.putExtra("title",booksList.get(position).getTitle());
                 intent.putExtra("authorsName",booksList.get(position).getAuthorsNames());
                 intent.putExtra("ISBN",booksList.get(position).getISBN());
                 intent.putExtra("DOI",booksList.get(position).getDOI());
                 intent.putExtra("photo",booksList.get(position).getAddressURLOfPhoto());
                 intent.putExtra("adressURL",booksList.get(position).getAdressURLOfResource());
+                intent.putExtra("price", booksList.get(position).getPrice());
                 mContext.startActivity(intent);
             }
         });
 
-        holder.download.setOnClickListener(new View.OnClickListener() {
+        holder.addToBasket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UserBook userBook= new UserBook(new Long(1), booksList.get(position).getId(), "DOWNLOADED", new Date());
 
+                BasketBook basketBook= new BasketBook(Long.valueOf(1),booksList.get(position).getId());
 
-                UserBookInterface userBookClient = ApiClient.getClient().create(UserBookInterface.class);
-                Call<UserBook> call = userBookClient.addBookForUser(userBook);
-                call.enqueue(new Callback<UserBook>() {
+                BasketBookInterface basketBookClient = ApiClient.getClient().create(BasketBookInterface.class);
+                Call<BasketBook> call = basketBookClient.addBookToBasketBook(basketBook);
+                call.enqueue(new Callback<BasketBook>() {
                     @Override
-                    public void onResponse(Call<UserBook> call, Response<UserBook> response) {
+                    public void onResponse(Call<BasketBook> call, Response<BasketBook> response) {
                         //
-                        response.code();
-                        Toast.makeText(mContext, "Book is downloading", Toast.LENGTH_LONG).show();
+                        if (response.code()== HttpURLConnection.HTTP_OK) {
+                            Toast.makeText(mContext, "Book is add to basket", Toast.LENGTH_SHORT).show();
+                        }
+                        if (response.code() == HttpURLConnection.HTTP_NOT_FOUND) {
+                            Toast.makeText(mContext, "Book has been already added to basket", Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                     @Override
-                    public void onFailure(Call<UserBook> call, Throwable t) {
+                    public void onFailure(Call<BasketBook> call, Throwable t) {
 
-                        Toast.makeText(mContext, "Book has been already downloaded", Toast.LENGTH_LONG).show();
+                        Toast.makeText(mContext, "Errir", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
         });
 
-        holder.favorite.setOnClickListener(new View.OnClickListener() {
+        holder.addToFavortie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Favorite favorite= new Favorite(new Long(1), booksList.get(position).getId());
@@ -120,17 +129,17 @@ public class BooksListAdapter extends RecyclerView.Adapter<BooksListAdapter.View
                     public void onResponse(Call<Favorite> call, Response<Favorite> response) {
                         //
                         if (response.code()==HttpURLConnection.HTTP_OK) {
-                            Toast.makeText(mContext, "Book is add to favorite", Toast.LENGTH_LONG).show();
+                            Toast.makeText(mContext, "Book is add to favorite", Toast.LENGTH_SHORT).show();
                         }
-                        if (response.body()==null) {
-                            Toast.makeText(mContext, "Book has been already added to favorite", Toast.LENGTH_LONG).show();
+                        if (response.code() == HttpURLConnection.HTTP_NOT_FOUND) {
+                            Toast.makeText(mContext, "Book has been already added to favorite", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<Favorite> call, Throwable t) {
 
-                        Toast.makeText(mContext, "Book has been already added to favorite", Toast.LENGTH_LONG).show();
+                        Toast.makeText(mContext, "Error", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -151,11 +160,11 @@ public class BooksListAdapter extends RecyclerView.Adapter<BooksListAdapter.View
         public final View mView;
         public final TextView title;
         public final TextView author;
-        //public final TextView isbn;
+        public final TextView price;
         public final ImageView photo;
         public final ImageButton addToFavortie;
-        public final ImageButton download;
-        public final ImageButton favorite;
+        public final ImageButton addToBasket;
+        //public final ImageButton favorite;
 
 
         public ViewHolder(View view) {
@@ -163,11 +172,11 @@ public class BooksListAdapter extends RecyclerView.Adapter<BooksListAdapter.View
             mView = view;
             title = (TextView) view.findViewById(R.id.text_view_title);
             author = (TextView) view.findViewById(R.id.text_view_author);
-            //isbn = (TextView) view.findViewById(R.id.text_view_isbn);
+            price = (TextView) view.findViewById(R.id.text_view_price);
             photo = (ImageView) view.findViewById(R.id.image_view_book);
             addToFavortie = (ImageButton) view.findViewById(R.id.image_favorite);
-            download = (ImageButton) view.findViewById(R.id.image_download);
-            favorite= (ImageButton) view.findViewById(R.id.image_favorite);
+            addToBasket = (ImageButton) view.findViewById(R.id.image_buy);
+            //favorite= (ImageButton) view.findViewById(R.id.image_favorite);
         }
 
     }

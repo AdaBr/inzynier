@@ -52,16 +52,17 @@ public class UserBookActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //toolbar.setTitle("Library");
-        //setSupportActionBar(toolbar);
-        //getSupportActionBar().setHomeButtonEnabled(true);
+
+        final Intent i = getIntent();
+        final int position = i.getExtras().getInt("position");
+
+
 
         final ViewPager vpPager = (ViewPager) findViewById(R.id.viewpager_usertabs);
         adapterViewPager = new PagerAdapter(getSupportFragmentManager());
 
         vpPager.setAdapter(adapterViewPager);
-
+        vpPager.setCurrentItem(position);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
 
@@ -79,6 +80,8 @@ public class UserBookActivity extends AppCompatActivity {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
+                vpPager.setCurrentItem(tab.getPosition());
+                //Toast.makeText(context, "Reselected" + tab.getPosition(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -115,7 +118,7 @@ public class UserBookActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<UserBook>> call, Throwable t) {
                 progressDialog.dismiss();
-                Toast.makeText(getApplicationContext(), "There are no books avaliable", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "There are no books avaliable", Toast.LENGTH_SHORT).show();
             }
         });
 

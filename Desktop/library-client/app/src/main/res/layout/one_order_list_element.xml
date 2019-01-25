@@ -23,65 +23,45 @@
             android:background="@color/white">
 
 
-            <ImageView
-                android:id="@+id/image_view_book"
-                android:layout_width="100dp"
-                android:layout_height="150dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                app:srcCompat="@mipmap/ic_launcher" />
 
             <TextView
-                android:id="@+id/text_view_title"
+                android:id="@+id/text_view_orderNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="11dp"
-                android:text="TextView"
-                android:layout_alignParentTop="true"
-                android:layout_toEndOf="@+id/image_view_book"
-                android:layout_marginTop="18dp"
-                android:textSize="18dp"/>
-
-            <TextView
-                android:id="@+id/text_view_author"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/text_view_title"
-                android:layout_centerVertical="true"
-                android:text="TextView"
-                android:textSize="14dp"/>
-
-            <TextView
-                android:id="@+id/text_view_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_marginStart="9dp"
                 android:text="TextView"
                 android:textSize="16dp"
-                android:layout_alignStart="@+id/text_view_title"
-                android:layout_below="@+id/text_view_author"
-                android:layout_marginTop="20dp"
-                />
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="20dp" />
 
-
-            <ImageButton
-                android:id="@+id/image_favorite"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                app:srcCompat="@android:drawable/btn_star"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp"/>
-
-            <ImageButton
-                android:id="@+id/image_buy"
+            <TextView
+                android:id="@+id/text_view_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                app:srcCompat="@drawable/basket"
+                android:layout_alignStart="@+id/text_view_orderNumber"
+                android:layout_centerVertical="true"
+                android:text="TextView"
+                android:textSize="16dp"/>
+
+            <TextView
+                android:id="@+id/text_view_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
                 android:layout_alignParentBottom="true"
-                android:layout_toStartOf="@+id/image_favorite"
-                android:layout_marginEnd="10dp" />
+                android:layout_alignStart="@+id/text_view_status"
+                android:layout_marginBottom="8dp"
+                android:textSize="16dp"/>
+
+
+            <TextView
+                android:id="@+id/text_view_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textSize="25dp"
+                android:layout_alignBottom="@+id/text_view_date"
+                android:layout_alignParentEnd="true" />
 
 
         </RelativeLayout>

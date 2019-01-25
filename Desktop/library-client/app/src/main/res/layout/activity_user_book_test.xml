@@ -35,7 +35,7 @@
                 android:id="@+id/tab_downloaded"
                 android:layout_height="match_parent"
                 android:layout_width="200dp"
-                android:text="Downloaded" />
+                android:text="Order" />
 
             <android.support.design.widget.TabItem
                 android:id="@+id/tab_favorite"

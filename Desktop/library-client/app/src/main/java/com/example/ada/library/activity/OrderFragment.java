@@ -89,7 +89,7 @@ public class OrderFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<UserBook>> call, Throwable t) {
-                Toast.makeText(view.getContext(), "There are no books avaliable", Toast.LENGTH_LONG).show();
+                Toast.makeText(view.getContext(), "There are no books avaliable", Toast.LENGTH_SHORT).show();
             }
         });
 
