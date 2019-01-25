@@ -15,11 +15,12 @@ public class User {
     private Long id;
 
     @Email
-    @NotEmpty
     private String email;
 
     @Transient
     private String password;
+
+    private boolean enabled;
 
     @Column(name = "confirmation_token")
     private String confirmationToken;
@@ -32,7 +33,6 @@ public class User {
         this.enabled = enabled;
     }
 
-    private boolean enabled;
 
     public Long getId() {
         return id;

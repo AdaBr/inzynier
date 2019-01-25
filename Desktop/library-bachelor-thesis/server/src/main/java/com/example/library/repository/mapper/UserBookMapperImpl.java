@@ -22,29 +22,33 @@ public class UserBookMapperImpl implements UserBookMapper {
         UserBookDto userBookDto = new UserBookDto();
         userBookDto.setUserID(userBook.getUserBookIdentity().getUserID());
         userBookDto.setBookID(userBook.getUserBookIdentity().getBookID());
-        userBookDto.setStatus(userBook.getStatus());
+        userBookDto.setStatus(userBook.getStringStatus());
         userBookDto.setDownloadDate(userBook.getDownloadDate());
         return userBookDto;
     }
 
-    //to bybły new String  user.setTitle(new String(userDto.getTitle()));
+    //to bybły new String  user.setBookTitle(new String(userDto.getBookTitle()));
     @Override
     public UserBook userBookDtoToUserBook(UserBookDto userBookDto) {
         UserBook userBook=new UserBook();
         UserBookIdentity userBookIdentity = new UserBookIdentity(userBookDto.getUserID(), userBookDto.getBookID());
         userBook.setUserBookIdentity(userBookIdentity);
         userBook.setDownloadDate(userBookDto.getDownloadDate());
+        /*
         switch (userBookDto.getStatus()) {
-            case "downloaded":
+            case "DOWNLOADED":
                 userBook.setStatus(Status.DOWNLOADED);
                 break;
-            case "waiting":
+            case "WAITING":
                 userBook.setStatus(Status.WAITING);
                 break;
-            case "favorite":
+            case "FAVORITE":
                 userBook.setStatus(Status.FAVORITE);
                 break;
         }
+        */
+        userBook.setStatus(userBookDto.getStatus());
+
         return userBook;
     }
 

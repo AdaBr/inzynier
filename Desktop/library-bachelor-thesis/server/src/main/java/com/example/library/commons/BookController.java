@@ -1,4 +1,4 @@
-package com.example.library.book;
+package com.example.library.commons;
 
 import com.example.library.model.Book;
 import com.example.library.repository.BookRepository;

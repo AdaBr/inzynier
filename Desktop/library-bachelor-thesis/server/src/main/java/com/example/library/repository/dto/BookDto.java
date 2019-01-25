@@ -7,12 +7,19 @@ public class BookDto {
 
     private String ISBN;
 
+    private String DOI;
+
     private String title;
 
-    private String category;
+    private String adressURLOfResource;
+
+    private String addressURLOfPhoto;
 
     private String authorsNames;
 
+    private String category;
+
+    private Float price;
 
     public BookDto() {
 
@@ -37,12 +44,44 @@ public class BookDto {
         return title;
     }
 
+    public String getAuhorsNames() {
+        return authorsNames;
+    }
+
+    public String getAdressURLOfResource() {
+        return adressURLOfResource;
+    }
+
+    public void setAdressURLOfResource(String adressURLOfResource) {
+        this.adressURLOfResource = adressURLOfResource;
+    }
+
+    public String getAddressURLOfPhoto() {
+        return addressURLOfPhoto;
+    }
+
+    public void setAddressURLOfPhoto(String addressURLOfPhoto) {
+        this.addressURLOfPhoto = addressURLOfPhoto;
+    }
+
+    public String getDOI() {
+        return DOI;
+    }
+
+    public void setDOI(String DOI) {
+        this.DOI = DOI;
+    }
+
+    public String getAuthorsNames() {
+        return authorsNames;
+    }
+
     public String getCategory() {
         return category;
     }
 
-    public String getAuhorsNames() {
-        return authorsNames;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public void setId(Long id) {
@@ -61,9 +100,6 @@ public class BookDto {
         this.authorsNames = authorsNames;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
 
     @Override
     public String toString() {
@@ -74,4 +110,11 @@ public class BookDto {
                 '}';
     }
 
+    public Float getPrice() {
+        return price;
+    }
+
+    public void setPrice(Float price) {
+        this.price = price;
+    }
 }

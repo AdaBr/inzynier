@@ -18,7 +18,7 @@ public class UserBookFacade {
     private UserBookService userBookService;
 
     @Autowired
-    private BookSearchService bookService;
+    private BookService bookService;
 
     @Autowired
     private AuthorBookService authorBookService;
@@ -52,9 +52,26 @@ public class UserBookFacade {
         UserBookDto userBookDto = mapper.userBookToUserBookDto(userBook);
         userBookDto.setBookTitle(bookService.getBookTitle(userBook.getUserBookIdentity().getBookID()));
 
-        List<Long> authorsID = authorBookService.getAuthorsIDWithBookID(userBook.getUserBookIdentity().getBookID());
+        userBookDto.setCoverOfBook(bookService.getBookCover(userBook.getUserBookIdentity().getBookID()));
+
+        List<Long> authorsID = new ArrayList<>();
+        for (AuthorBook authorBook : authorBookService.getAuthorsIDWithBookID(userBook.getUserBookIdentity().getBookID())) {
+            authorsID.add(authorBook.getAuthorBookIdentity().getAuthorID());
+        }
         userBookDto.setBookAuthors(authorService.authorsName(authorsID));
 
         return userBookDto;
+    }
+
+    public boolean addBookToUserBooks(UserBookDto userBookDto) {
+        UserBook userBook = mapper.userBookDtoToUserBook(userBookDto);
+
+        return userBookService.addBookToUserBooks(userBook);
+    }
+
+    public boolean modifyBookFromUserBooks(UserBookDto userBookDto) {
+        UserBook userBook = mapper.userBookDtoToUserBook(userBookDto);
+
+        return userBookService.modifyBookFromUserBooks(userBook);
     }
 }

@@ -8,8 +8,9 @@ import java.util.List;
 
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
-    //TO DO
+    /*TO DO
+    List<Book> findByISBNContaining(String ISBN);
     List<Book> findByTitleContaining(String title);
-
+*/
 
 }

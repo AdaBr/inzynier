@@ -25,15 +25,11 @@ public class UserMapperImpl implements UserMapper {
         return userDto;
     }
 
-    //to bybły new String  user.setTitle(new String(userDto.getTitle()));
     @Override
     public User userDtoToUser(UserDto userDto) {
 
         User user = new User();
         BeanUtils.copyProperties(userDto, user );
-
-        //User user = delegate.userDtoToUser(userDto);
-        ///user.setTitle(userDto.getTitle());
 
         return user;
     }

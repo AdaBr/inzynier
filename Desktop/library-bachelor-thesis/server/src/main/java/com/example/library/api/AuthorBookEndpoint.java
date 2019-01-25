@@ -17,12 +17,13 @@ public class AuthorBookEndpoint {
     @Autowired
     private AuthorBookFacade authorBookFacade;
 
-
+    /*
 
     @RequestMapping(value = "{authorID}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<?> getAllAuthorsBooks(@PathVariable("authorID") Long authorID) {
         return new ResponseEntity<>(authorBookFacade.getAllAuthorsBookstest(authorID), HttpStatus.OK);
     }
+    */
 
 
 }

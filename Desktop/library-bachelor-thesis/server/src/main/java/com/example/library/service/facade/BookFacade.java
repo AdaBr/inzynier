@@ -1,5 +1,6 @@
 package com.example.library.service.facade;
 
+import com.example.library.model.AuthorBook;
 import com.example.library.model.Book;
 import com.example.library.repository.dto.BookDto;
 import com.example.library.repository.mapper.BookMapperImpl;
@@ -14,13 +15,7 @@ import java.util.List;
 public class BookFacade {
 
     @Autowired
-    private BookCommandService bookCommandService;
-
-    @Autowired
-    private BookQueryService bookQueryService;
-
-    @Autowired
-    private BookSearchService bookSearchService;
+    private BookService bookService;
 
     @Autowired
     private AuthorBookService authorBookService;
@@ -32,6 +27,56 @@ public class BookFacade {
     private BookMapperImpl mapper;
 
 
+
+    public BookDto getBook(Long id) {
+        return setBookDtoAuthorsNames(id);
+    }
+
+    public BookDto getBook(BookDto bookDto) {
+        Book book = mapper.bookDtoToBook(bookDto);
+        return mapper.bookToBookDto(bookService.getBook(book));
+    }
+
+
+    public List<BookDto> getAllBooks() {
+        List<BookDto> bookDtoList = new ArrayList<>();
+        for (Book book : bookService.getAllBooks()) {
+            bookDtoList.add(setBookDtoAuthorsNames(book.getId()));
+        }
+        return bookDtoList;
+    }
+
+
+    public List<BookDto> getBooksBySearch(String search) {
+        if (search.equals("")) {
+            return getAllBooks();
+        }
+        else {
+            List<BookDto> bookDtoList = new ArrayList<>();
+            for (Book book : bookService.getBookBySearch(search)) {
+                bookDtoList.add(setBookDtoAuthorsNames(book.getId()));
+            }
+            return bookDtoList;
+        }
+    }
+
+    public List<BookDto> getBookByTitle(String search) {
+        return mapper.booksToBookDtos(bookService.getBookByTitle(search));
+    }
+
+    public BookDto setBookDtoAuthorsNames(Long id) {
+        BookDto bookDto = mapper.bookToBookDto(bookService.getBook(id));
+        List<Long> authorsID = new ArrayList<>();
+        for (AuthorBook authorBook : authorBookService.getAuthorsIDWithBookID(id)) {
+            authorsID.add(authorBook.getAuthorBookIdentity().getAuthorID());
+        }
+        bookDto.setAuthorsNames(authorService.authorsName(authorsID));
+
+        return bookDto;
+    }
+
+
+    /*
     public void addBook(BookDto bookDto) {
         Book book = mapper.bookDtoToBook(bookDto);
         bookCommandService.addBook(book);
@@ -42,13 +87,8 @@ public class BookFacade {
         bookCommandService.modifyBook(book);
     }
 
-    public BookDto getBook(Long id) {
-        return setBookDtoAuthorsNames(id);
-    }
-
-    public BookDto getBook(BookDto bookDto) {
-        Book book = mapper.bookDtoToBook(bookDto);
-        return mapper.bookToBookDto(bookQueryService.getBook(book));
+    public void removeAllBooks() {
+        bookCommandService.removeAllBooks();
     }
 
     public void removeBook(BookDto bookDto) {
@@ -56,34 +96,10 @@ public class BookFacade {
         bookCommandService.removeBook(book);
     }
 
-    public List<BookDto> getAllBooks() {
-        List<BookDto> bookDtoList = new ArrayList<>();
-        for (Book book : bookQueryService.getAllBooks()) {
-            bookDtoList.add(setBookDtoAuthorsNames(book.getId()));
-        }
-        return bookDtoList;
-    }
-
-    public void removeAllBooks() {
-        bookCommandService.removeAllBooks();
-    }
 
 
-    public List<BookDto> getBooksBySearch(String search) {
-        return mapper.booksToBookDtos(bookSearchService.getBookBySearch(search));
-    }
 
-    public List<BookDto> getBookByTitle(String search) {
-        return mapper.booksToBookDtos(bookSearchService.getBookByTitle(search));
-    }
-
-    public BookDto setBookDtoAuthorsNames(Long id) {
-        BookDto bookDto = mapper.bookToBookDto(bookQueryService.getBook(id));
-        List<Long> authorsID = authorBookService.getAuthorsIDWithBookID(id);
-        bookDto.setAuthorsNames(authorService.authorsName(authorsID));
-
-        return bookDto;
-    }
+    */
 
 }
 

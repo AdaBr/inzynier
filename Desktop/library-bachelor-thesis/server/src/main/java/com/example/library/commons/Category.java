@@ -1,4 +1,4 @@
-package com.example.library.book;
+package com.example.library.commons;
 
 public enum Category {
     Horror,

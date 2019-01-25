@@ -1,6 +1,6 @@
 package com.example.library.model;
 
-import com.example.library.book.Category;
+import com.example.library.commons.Category;
 
 import javax.persistence.*;
 
@@ -14,16 +14,20 @@ public class Book {
 
     private String ISBN;
 
-    private String DIO;
+    private String DOI;
 
     private String title;
 
-    private String adressURLOfResource;
+    @Column(name = "downloaded_address")
+    private String downloadedAddress;
 
-    private String addressURLOfPhoto;
+    private String photo;
 
-    @Enumerated
-    private Category category;
+    private String category;
+
+    private String description;
+
+    private Float price;
 
     public Book() {
 
@@ -36,13 +40,14 @@ public class Book {
         this.title = title;
     }
 
-    public Book(String ISBN, String DIO, String title, String adressURLOfResource, String addressURLOfPhoto, Category category) {
+    public Book(String ISBN, String DOI, String title, String adressURLOfResource, String addressURLOfPhoto, String category, Float price) {
         this.ISBN = ISBN;
-        this.DIO = DIO;
+        this.DOI = DOI;
         this.title = title;
-        this.adressURLOfResource = adressURLOfResource;
-        this.addressURLOfPhoto = addressURLOfPhoto;
+        this.downloadedAddress = adressURLOfResource;
+        this.photo = addressURLOfPhoto;
         this.category = category;
+        this.price=price;
     }
 
     public Long getId() {
@@ -53,24 +58,24 @@ public class Book {
         return ISBN;
     }
 
-    public String getDIO() {
-        return DIO;
+    public String getDOI() {
+        return DOI;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public String getAdressURLOfResource() {
-        return adressURLOfResource;
+    public String getDownloadedAddress() {
+        return downloadedAddress;
     }
 
     public String getAddressURLOfPhoto() {
-        return addressURLOfPhoto;
+        return photo;
     }
 
 
-    public Category getCategory() {
+    public String getCategory() {
         return category;
     }
 
@@ -82,23 +87,47 @@ public class Book {
         this.ISBN = ISBN;
     }
 
-    public void setDIO(String DIO) {
-        this.DIO = DIO;
+    public void setDOI(String DOI) {
+        this.DOI = DOI;
     }
 
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public void setAdressURLOfResource(String adressURLOfResource) {
-        this.adressURLOfResource = adressURLOfResource;
+    public void setDownloadedAddress(String downloadedAddress) {
+        this.downloadedAddress = downloadedAddress;
     }
 
     public void setAddressURLOfPhoto(String addressURLOfPhoto) {
-        this.addressURLOfPhoto = addressURLOfPhoto;
+        this.photo = addressURLOfPhoto;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public Float getPrice() {
+        return price;
+    }
+
+    public void setPrice(Float price) {
+        this.price = price;
     }
 }

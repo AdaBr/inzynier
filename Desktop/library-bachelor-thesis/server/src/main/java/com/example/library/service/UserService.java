@@ -33,7 +33,7 @@ public class UserService {
 
     public boolean registerNewUser(User user) {
 
-        if (userRepository.findByEmail(user.getEmail())!=null) {
+        if (findByEmail(user.getEmail())!=null) {
             return false;
         }
         else {
@@ -41,7 +41,7 @@ public class UserService {
 
             user.setConfirmationToken(UUID.randomUUID().toString());
 
-            userRepository.save(user);
+            saveUser(user);
 
             String appUrl = Constans.SERVER_URL;
 
@@ -61,7 +61,7 @@ public class UserService {
     public boolean confirmRegistration(String token) {
         User user = userRepository.findByConfirmationToken(token);
 
-        if (userRepository.findByConfirmationToken(token) == null) {
+        if (findByConfirmationToken(token) == null) {
             return false;
         } else {
             user.setEnabled(true);

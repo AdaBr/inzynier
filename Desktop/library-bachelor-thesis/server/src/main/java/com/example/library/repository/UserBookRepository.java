@@ -10,7 +10,10 @@ import java.util.List;
 
 @Repository
 public interface UserBookRepository extends JpaRepository<UserBook, UserBookIdentity>{
-    List<UserBook> findByUserBookIdentity_BookID(Long bookID);
+
+    UserBook findByUserBookIdentityAndStatus(UserBookIdentity userBookIdentity, String status);
+    UserBook findByUserBookIdentity(UserBookIdentity userBookIdentity);
     List<UserBook> findByUserBookIdentity_UserID(Long userID);
-    List<UserBook> findByUserBookIdentity_UserIDAndStatus(Long userID, Status status);
+    List<UserBook> findByUserBookIdentity_UserIDAndStatus(Long userID, String status);
+
 }

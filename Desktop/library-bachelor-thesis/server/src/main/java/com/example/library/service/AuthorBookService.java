@@ -15,32 +15,23 @@ public class AuthorBookService {
     private AuthorBookRepository authorBookRepository;
 
 
-    public void createAuthorBook(AuthorBook authorBook) {
-        this.authorBookRepository.save(authorBook);
-    }
-
-    /*
-    AuthorBook getAuthorBook(AuthorBookIdentity authorBookIdentity) {
-        return this.authorBookRepository.findById(authorBookIdentity).orElse(null);
-    }
-
-    void getAuthorBook(AuthorBook authorBook) {
-
-        return this.authorBookRepository.finddById(authorBook.getAuthorBookIdentity());
-    }
-    */
-
     public List<AuthorBook> getAllAuthorBooks() {
+
         return this.authorBookRepository.findAll();
 
     }
 
+    public List<AuthorBook> getBooksIDWithAuthorsID(Long authorID) {
 
-    public void removeAllAuthorBooks() {
-        this.authorBookRepository.deleteAll();
+        return authorBookRepository.findByAuthorBookIdentity_AuthorID(authorID);
     }
 
+    public List<AuthorBook> getAuthorsIDWithBookID(Long bookID) {
 
+        return authorBookRepository.findByAuthorBookIdentity_BookID(bookID);
+    }
+
+    /* rozwiazane systemowo findBy JPA
     public List<Long> getBooksIDWithAuthorsID(List<Long> authorsID) {
         List<Long> booksID = new ArrayList<Long>();
 
@@ -78,8 +69,41 @@ public class AuthorBookService {
         return authorsID;
     }
 
+    */
 
-    public List<AuthorBook> getAllAuthorBooksTest(Long authorID) {
-        return authorBookRepository.findByAuthorBookIdentity_AuthorID(authorID);
+
+
+
+  /*
+    public void createAuthorBook(AuthorBook authorBook) {
+        this.authorBookRepository.save(authorBook);
     }
+
+
+    AuthorBook getAuthorBook(AuthorBookIdentity authorBookIdentity) {
+        return this.authorBookRepository.findById(authorBookIdentity).orElse(null);
+    }
+
+    void getAuthorBook(AuthorBook authorBook) {
+
+        return this.authorBookRepository.finddById(authorBook.getAuthorBookIdentity());
+    }
+
+    public void removeAllAuthorBooks() {
+        this.authorBookRepository.deleteAll();
+    }
+    */
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

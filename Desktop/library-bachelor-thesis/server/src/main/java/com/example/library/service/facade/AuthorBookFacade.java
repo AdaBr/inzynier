@@ -20,25 +20,30 @@ public class AuthorBookFacade {
     private AuthorBookMapperImpl mapper;
 
 
+    public List<AuthorBookDto> getAllAuthorsBooks() {
+        return this.mapper.authorBooksToAuthorBookDtos(this.authorBookService.getAllAuthorBooks());
+    }
+
+
+
+    /*
+    public List<AuthorBookDto> getAllAuthorsBookstest(Long authorID) {
+        return mapper.authorBooksToAuthorBookDtos(authorBookService.getAllAuthorBooksTest(authorID));
+    }
+
+*/
+    /*
+
+     public void removeAllAuthorBooks() {
+        this.authorBookService.removeAllAuthorBooks();
+    }
+
+
     public void addAuthorBook(AuthorBookDto authorBookDto) {
         AuthorBook authorBook = mapper.authorBookDtoToAuthorBook(authorBookDto);
         this.authorBookService.createAuthorBook(authorBook);
     }
 
-
-    public List<AuthorBookDto> getAllAuthorsBooks() {
-        return this.mapper.authorBooksToAuthorBookDtos(this.authorBookService.getAllAuthorBooks());
-    }
-
-    public void removeAllAuthorBooks() {
-        this.authorBookService.removeAllAuthorBooks();
-    }
-
-    public List<AuthorBookDto> getAllAuthorsBookstest(Long authorID) {
-        return mapper.authorBooksToAuthorBookDtos(authorBookService.getAllAuthorBooksTest(authorID));
-    }
-
-    /*
     public void removeAuthorBook(AuthorBookDto authorBookDto) {
         AuthorBook authorBook = mapper.authorBookDtoToAuthorBook(authorBookDto);
         authorBookService.removeAuthorBook(authorBook);

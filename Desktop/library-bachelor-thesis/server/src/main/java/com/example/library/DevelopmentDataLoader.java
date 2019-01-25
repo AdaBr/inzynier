@@ -24,6 +24,7 @@ public class DevelopmentDataLoader implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
+        /*
         AuthorDto authorDto = new AuthorDto();
         authorDto.setId(new Long(4));
         authorDto.setForename("Katarzyna");
@@ -49,7 +50,7 @@ public class DevelopmentDataLoader implements ApplicationRunner {
 
         BookDto bookDto = new BookDto();
         bookDto.setISBN("978-83-65456-65-6");
-        bookDto.setTitle("Instrukcja obslugi mezczyzny");
+        bookDto.setBookTitle("Instrukcja obslugi mezczyzny");
         //bookDto.setAuthorsID(authorsIDList);
         bookFacade.addBook(bookDto);
 
@@ -58,7 +59,7 @@ public class DevelopmentDataLoader implements ApplicationRunner {
 
         //booksList.get(0).setAuthorsID(authorsIDList);
 
-
+        */
 
     }
 }

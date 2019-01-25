@@ -19,25 +19,17 @@ public class BookMapperImpl implements BookMapper {
     @Override
     public BookDto bookToBookDto(Book book) {
         BookDto bookDto = new BookDto();
-        BeanUtils.copyProperties(book, bookDto, "authorsNames");
-
-        //BookDto bookDto = delegate.bookToBookDto(book);
-        //bookDto.setTitle(book.getTitle());
-
-        //TO DO powinno kopiwoac tym beanutils
+        BeanUtils.copyProperties(book, bookDto, "category", "authorsNames");
         bookDto.setId(book.getId());
         return bookDto;
     }
 
-    //to bybły new String  book.setTitle(new String(bookDto.getTitle()));
+
     @Override
         public Book bookDtoToBook(BookDto bookDto) {
 
         Book book = new Book();
-        BeanUtils.copyProperties(bookDto, book, "authorsNames");
-
-        //Book book = delegate.bookDtoToBook(bookDto);
-        ///book.setTitle(bookDto.getTitle());
+        BeanUtils.copyProperties(bookDto, book, "category", "authorsNames");
 
         return book;
     }

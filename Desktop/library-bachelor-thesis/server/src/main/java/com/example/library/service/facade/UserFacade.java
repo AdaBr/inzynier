@@ -27,6 +27,7 @@ public class UserFacade {
 
     public boolean logInUser(String loginPassword) {
 
-
+        //TO DO
+        return false;
     }
 }

@@ -2,21 +2,19 @@ package com.example.library.repository.dto;
 
 import java.util.Date;
 
-public class UserBookDto {
+public class FavoriteDto {
 
     private Long userID;
 
     private Long bookID;
-
-    private String status;
-
-    private Date downloadDate;
 
     private String bookTitle;
 
     private String bookAuthors;
 
     private String coverOfBook;
+
+    private Float price;
 
 
     public Long getUserID() {
@@ -27,13 +25,6 @@ public class UserBookDto {
         return bookID;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public Date getDownloadDate() {
-        return downloadDate;
-    }
 
     public String getBookTitle() {
         return bookTitle;
@@ -51,14 +42,6 @@ public class UserBookDto {
         this.bookID = bookID;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public void setDownloadDate(Date downloadDate) {
-        this.downloadDate = downloadDate;
-    }
-
     public void setBookTitle(String bookTitle) {
         this.bookTitle = bookTitle;
     }
@@ -73,5 +56,13 @@ public class UserBookDto {
 
     public void setCoverOfBook(String coverOfBook) {
         this.coverOfBook = coverOfBook;
+    }
+
+    public Float getPrice() {
+        return price;
+    }
+
+    public void setPrice(Float price) {
+        this.price = price;
     }
 }

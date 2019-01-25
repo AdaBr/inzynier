@@ -20,7 +20,7 @@ public class BookEndpoint {
         return new ResponseEntity<>(bookFacade.getBook(id), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "querys/{search}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "query/{search}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<?> getBooksBySearach(@PathVariable("search") String search) {
         return new ResponseEntity<>(bookFacade.getBooksBySearch(search), HttpStatus.OK);
     }
@@ -29,6 +29,10 @@ public class BookEndpoint {
     ResponseEntity<?> getAllBooks() {
         return new ResponseEntity<>(bookFacade.getAllBooks(), HttpStatus.OK);
     }
+
+
+
+
 
 
 /*
