@@ -112,7 +112,7 @@ public class UserBookActivity extends AppCompatActivity {
             public void onResponse(Call<List<UserBook>> call, Response<List<UserBook>> response) {
                 progressDialog.dismiss();
                 userBookList.addAll(response.body());
-                recyclerView.setAdapter(new UserBooksListAdapter(userBookList, recyclerView, context));
+                recyclerView.setAdapter(new OrderListAdapter(userBookList, recyclerView, context));
             }
 
             @Override

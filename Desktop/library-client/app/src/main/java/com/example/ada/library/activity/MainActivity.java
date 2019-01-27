@@ -183,13 +183,11 @@ public class MainActivity extends AppCompatActivity {
         }
         if (id == R.id.action_logout) {
 
-              /*Intent i = new Intent(getApplicationContext(), LogInActivity.class);
-          i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            Intent i = new Intent(context, LogInActivity.class);
+            //i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
-            i.putExtra("id", id);
+            i.putExtra("position", 0);
             startActivity(i);
-            //overridePendingTransition(R.animator.animacja, R.animator.animacja);
-            */
         }
 
         return super.onOptionsItemSelected(item);

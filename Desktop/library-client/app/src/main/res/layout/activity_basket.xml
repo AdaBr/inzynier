@@ -3,21 +3,19 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar2"
         android:layout_width="match_parent"
-        android:layout_height="70dp">
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimaryDark"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
 
-
-        <TextView
-            android:id="@+id/text_basket"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
-    </RelativeLayout>
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="470dp">
+        android:layout_height="490dp"
+        android:background="@color/basis" >
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rycle_view_basket"
@@ -29,7 +27,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/basis">
 
 
         <TextView
@@ -37,15 +36,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
-            android:textSize="25dp"/>
+            android:textSize="25dp"
+            android:gravity="center"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="9dp" />
 
         <Button
             android:id="@+id/button_pay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="PAY"
+            android:textSize="20dp"
+            android:textColor="@color/white"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:background="@color/dark"/>
 
     </RelativeLayout>
 

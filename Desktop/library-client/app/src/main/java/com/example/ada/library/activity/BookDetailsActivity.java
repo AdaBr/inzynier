@@ -24,6 +24,7 @@ import com.example.ada.library.model.Favorite;
 import com.squareup.picasso.Picasso;
 
 import java.net.HttpURLConnection;
+import java.text.NumberFormat;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -79,7 +80,11 @@ public class BookDetailsActivity extends AppCompatActivity {
         TextView text_doi= (TextView)findViewById(R.id.text_doi);
         text_doi.setText("DOI: " + dio);
         TextView text_price = (TextView) findViewById(R.id.text_price);
-        text_price.setText(price+ " PLN");
+
+        NumberFormat formatter = NumberFormat.getNumberInstance();
+        formatter.setMinimumFractionDigits(2);
+        String pric=formatter.format(price);
+        text_price.setText(pric+ " PLN");
         ImageView image = (ImageView) findViewById(R.id.image_book);
         Picasso.with(image.getContext()).load(photo).into(image);
 

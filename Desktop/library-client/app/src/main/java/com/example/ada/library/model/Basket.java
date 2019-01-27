@@ -17,6 +17,12 @@ public class Basket {
 
     private float wholeAmount;
 
+    public Basket(Long userID, Long basketID, String status) {
+        this.userID = userID;
+        this.basketID = basketID;
+        this.status = status;
+    }
+
     public float getWholeAmount() {
         return wholeAmount;
     }

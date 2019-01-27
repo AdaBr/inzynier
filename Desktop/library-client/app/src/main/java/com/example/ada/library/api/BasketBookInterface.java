@@ -17,7 +17,7 @@ import retrofit2.http.Path;
 public interface BasketBookInterface {
 
     @GET("basketbooks/{basketID}")
-    Call<List<BasketBook>> getBooksFromBasket(@Path("basketD") Long basketID);
+    Call<List<BasketBook>> getBooksFromBasket(@Path("basketID") Long basketID);
 
     @GET("basketbooks/{userID}/{status}")
     Call<List<BasketBook>> getBooksFromUserBasketWithStatus(@Path("userID") Long userID,@Path("status") String status);

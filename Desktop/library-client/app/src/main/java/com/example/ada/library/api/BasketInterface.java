@@ -20,8 +20,12 @@ public interface BasketInterface {
     @GET("baskets/{userID}")
     Call<List<Basket>> getBasketForUser(@Path("basketD") Long userID);
 
+
     @GET("baskets/{userID}/{status}")
-    Call<List<Basket>> getBasketWithStatusForUser(@Path("basketD") Long userID, @Path("status") String status);
+    Call<List<Basket>> getBasketWithStatusForUser(@Path("userID") Long userID, @Path("status") String status);
+
+    @POST("baskets/modify")
+    Call<Basket> modifyBasket(@Body Basket basket);
 
 
 }

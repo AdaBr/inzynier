@@ -37,26 +37,30 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="9dp"
                 android:text="TextView"
-                android:layout_above="@+id/text_view_author"
+                android:layout_alignParentTop="true"
                 android:layout_toEndOf="@+id/image_view_book"
-                android:layout_marginBottom="11dp" />
+                android:layout_marginTop="11dp"
+                android:textSize="18dp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/text_view_author"
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@+id/text_view_title"
                 android:layout_centerVertical="true"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textSize="14dp"
+                android:textStyle="italic"/>
 
             <TextView
                 android:id="@+id/text_view_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/text_view_author"
                 android:text="TextView"
-                android:layout_alignTop="@+id/image_download"
-                android:layout_alignBottom="@+id/image_favorite" />
+                android:layout_alignTop="@+id/image_buy"
+                android:layout_alignStart="@+id/text_view_author"
+                android:textSize="16dp"/>
 
             <ImageButton
                 android:id="@+id/image_remove"

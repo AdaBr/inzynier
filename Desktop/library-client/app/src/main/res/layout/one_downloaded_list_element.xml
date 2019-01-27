@@ -44,7 +44,7 @@
 
             <TextView
                 android:id="@+id/text_view_author"
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@+id/text_view_title"
                 android:layout_centerVertical="true"
@@ -52,7 +52,7 @@
                 android:textSize="14dp"/>
 
             <TextView
-                android:id="@+id/text_view_date"
+                android:id="@+id/text_view_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
@@ -60,6 +60,14 @@
                 android:layout_alignStart="@+id/text_view_author"
                 android:layout_marginBottom="8dp"
                 android:textSize="14dp"/>
+
+            <ImageButton
+                android:id="@+id/image_download"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@android:drawable/stat_sys_download"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true" />
 
 
         </RelativeLayout>

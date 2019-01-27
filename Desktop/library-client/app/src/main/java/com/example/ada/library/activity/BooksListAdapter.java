@@ -24,6 +24,7 @@ import com.squareup.picasso.Downloader;
 import com.squareup.picasso.Picasso;
 
 import java.net.HttpURLConnection;
+import java.text.NumberFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -66,9 +67,14 @@ public class BooksListAdapter extends RecyclerView.Adapter<BooksListAdapter.View
         //holder.currentBook = booksList.get(position);
         holder.title.setText(booksList.get(position).getTitle());
         holder.author.setText(booksList.get(position).getAuthorsNames());
-        holder.price.setText(booksList.get(position).getPrice() + " PLN");
+
+        NumberFormat formatter = NumberFormat.getNumberInstance();
+        formatter.setMinimumFractionDigits(2);
+        String pric=formatter.format(booksList.get(position).getPrice());
+        holder.price.setText(pric + " PLN");
+
         //String photoUrl= "https://ecsmedia.pl/c/instrukcja-obslugi-faceta-w-iext48615521.jpg";
-        Picasso.with(holder.photo.getContext()).load(booksList.get(position).getAddressURLOfPhoto()).into(holder.photo);
+        Picasso.with(holder.photo.getContext()).load(booksList.get(position).getAddressURLOfPhoto()).resize(100, 150).into(holder.photo);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override

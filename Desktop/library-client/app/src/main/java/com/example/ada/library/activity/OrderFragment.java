@@ -13,8 +13,8 @@ import android.widget.Toast;
 
 import com.example.ada.library.R;
 import com.example.ada.library.api.ApiClient;
-import com.example.ada.library.api.UserBookInterface;
-import com.example.ada.library.model.UserBook;
+import com.example.ada.library.api.BasketInterface;
+import com.example.ada.library.model.Basket;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,7 @@ public class OrderFragment extends Fragment {
 
     private int position;
     Context context;
-    private List<UserBook> userBookList = new ArrayList<>();
+    private List<Basket> basketList = new ArrayList<>();
     static String status;
 
 
@@ -62,33 +62,28 @@ public class OrderFragment extends Fragment {
         final View view = inflater.inflate(R.layout.user_tabs_fragment, container, false);
 
 
+        context=this.getContext();
+
         final RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyle_userbooks);
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        UserBookInterface userBookClient = ApiClient.getClient().create(UserBookInterface.class);
+        BasketInterface basketClient = ApiClient.getClient().create(BasketInterface.class);
 
-        status = "DOWNLOADED";
-        /*
-        if (position == 0) {
-            status = "DOWNLOADED";
-        } else {
-            status = "FAVORITE";
-        }
-        */
 
-        Call<List<UserBook>> call = userBookClient.getUserBooksWithStatus(new Long(1), status);
-        call.enqueue(new Callback<List<UserBook>>() {
+
+        Call<List<Basket>> call = basketClient.getBasketWithStatusForUser(new Long(1), "BOUGHT");
+        call.enqueue(new Callback<List<Basket>>() {
             @Override
-            public void onResponse(Call<List<UserBook>> call, Response<List<UserBook>> response) {
-                userBookList.addAll(response.body());
-                recyclerView.setAdapter(new UserBooksListAdapter(userBookList, recyclerView, context, status));
+            public void onResponse(Call<List<Basket>> call, Response<List<Basket>> response) {
+                basketList.addAll(response.body());
+                recyclerView.setAdapter(new OrderListAdapter(basketList, recyclerView, context));
             }
 
             @Override
-            public void onFailure(Call<List<UserBook>> call, Throwable t) {
+            public void onFailure(Call<List<Basket>> call, Throwable t) {
                 Toast.makeText(view.getContext(), "There are no books avaliable", Toast.LENGTH_SHORT).show();
             }
         });

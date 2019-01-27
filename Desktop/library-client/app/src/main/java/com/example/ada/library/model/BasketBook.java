@@ -20,6 +20,8 @@ public class BasketBook {
 
     private Float price;
 
+    private String addressURL;
+
     public BasketBook() {
 
     }
@@ -90,5 +92,13 @@ public class BasketBook {
 
     public void setBookTitle(String bookTitle) {
         this.bookTitle = bookTitle;
+    }
+
+    public String getAddressURL() {
+        return addressURL;
+    }
+
+    public void setAddressURL(String addressURL) {
+        this.addressURL = addressURL;
     }
 }

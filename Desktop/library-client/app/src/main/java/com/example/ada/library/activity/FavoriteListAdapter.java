@@ -19,6 +19,7 @@ import com.example.ada.library.model.Favorite;
 import com.squareup.picasso.Picasso;
 
 import java.net.HttpURLConnection;
+import java.text.NumberFormat;
 import java.util.List;
 
 import retrofit2.Call;
@@ -59,13 +60,18 @@ class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapter.ViewH
         //holder.currentBook = booksList.get(position);
         holder.title.setText(favoritesList.get(position).getBookTitle());
         holder.author.setText(favoritesList.get(position).getBookAuthors());
-        holder.price.setText(favoritesList.get(position).getPrice() + " PLN");
+        NumberFormat formatter = NumberFormat.getNumberInstance();
+        formatter.setMinimumFractionDigits(2);
+        String pric=formatter.format(favoritesList.get(position).getPrice());
+        holder.price.setText(pric + " PLN");
+
+        holder.price.setText(pric + " PLN");
         //holder.author.setText(favoritesList.get(position).getPrice().toString());
         //String photoUrl= "https://ecsmedia.pl/c/instrukcja-obslugi-faceta-w-iext48615521.jpg";
         //Picasso.with(holder.photo.getContext()).load(favoritesList.get(position).get()).into(holder.photo);
 
 
-        Picasso.with(holder.photo.getContext()).load(favoritesList.get(position).getCoverOfBook()).into(holder.photo);
+        Picasso.with(holder.photo.getContext()).load(favoritesList.get(position).getCoverOfBook()).resize(100, 150).into(holder.photo);
 
 
         holder.remove.setOnClickListener(new View.OnClickListener() {
