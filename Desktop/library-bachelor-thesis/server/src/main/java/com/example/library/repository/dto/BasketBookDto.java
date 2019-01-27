@@ -17,6 +17,8 @@ public class BasketBookDto {
 
     private Long userID;
 
+    private String addressURL;
+
 
     public Long getBasketID() {
         return basketID;
@@ -76,4 +78,11 @@ public class BasketBookDto {
     }
 
 
+    public String getAddressURL() {
+        return addressURL;
+    }
+
+    public void setAddressURL(String addressURL) {
+        this.addressURL = addressURL;
+    }
 }

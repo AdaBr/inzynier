@@ -26,6 +26,12 @@ public class BasketService {
     public boolean addBasketToUser(Basket basket) {
         List<Basket> alredyExsist = basketRepository.findByUserIDAndStatus(basket.getUserID(), "WAITING");
         if (alredyExsist.isEmpty()) {
+            basket.setStatus("WAITING");
+            addBasket(basket);
+            return true;
+        }
+        else if (alredyExsist.get(0).getStatus()!="WAITING") {
+            basket.setStatus("WAITING");
             addBasket(basket);
             return true;
         }
@@ -44,6 +50,7 @@ public class BasketService {
         if (alreadyExsist!=null) {
             alreadyExsist.setStatus(basket.getStatus());
             alreadyExsist.setRealizationDate(basket.getRealizationDate());
+            addBasketToUser(new Basket(basket.getUserID()));
             return true;
         }
 

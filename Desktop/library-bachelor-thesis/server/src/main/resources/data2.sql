@@ -1,5 +1,5 @@
 INSERT INTO Book
-  (id, ISBN, bookTitle, DOI, adressURL, photo, subject )
+  (id, ISBN, bookTitle, DOI, addressURL, photo, subject )
 VALUES
   (1, '9780870740114', 'Backwoods to Border', '', 'https://digital.library.unt.edu/ark:/67531/metadc38306/m1/3/sizes/', '', 'Anthropology' ),
  b (2, '9782889198177' 'The Bacterial Cell: Coupling between Growth, Nucleoid Replication, Cell Division and Shape', '10.3389/978-2-88919-817-7', 'https://www.frontiersin.org/research-topics/2905/the-bacterial-cell-coupling-between-growth-nucleoid-replication-cell-division-and-shape', '', 'Microbiology'),

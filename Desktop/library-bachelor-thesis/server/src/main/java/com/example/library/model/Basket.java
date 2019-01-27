@@ -22,6 +22,14 @@ public class Basket {
     @Column(name = "realization_date")
     private Date realizationDate;
 
+    public Basket(Long userID) {
+        this.userID=userID;
+    }
+
+    public Basket() {
+
+    }
+
     public Long getBasketID() {
         return basketID;
     }

@@ -3,9 +3,7 @@ package com.example.library.service.facade;
 import com.example.library.model.AuthorBook;
 import com.example.library.model.Basket;
 import com.example.library.model.BasketBook;
-import com.example.library.model.Favorite;
 import com.example.library.repository.dto.BasketBookDto;
-import com.example.library.repository.dto.FavoriteDto;
 import com.example.library.repository.mapper.BasketBookMapperImpl;
 import com.example.library.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +52,7 @@ public class BasketBookFacade {
         basketBookDto.setBookTitle(bookService.getBookTitle(basketBook.getBasketBookIdentity().getBookID()));
         basketBookDto.setBookCover(bookService.getBookCover(basketBook.getBasketBookIdentity().getBookID()));
         basketBookDto.setPrice(bookService.getBookPrice(basketBook.getBasketBookIdentity().getBookID()));
+        basketBookDto.setAddressURL(bookService.getAddressUrl(basketBook.getBasketBookIdentity().getBookID()));
 
         List<Long> authorsID = new ArrayList<>();
         for (AuthorBook authorBook : authorBookService.getAuthorsIDWithBookID(basketBook.getBasketBookIdentity().getBookID())) {

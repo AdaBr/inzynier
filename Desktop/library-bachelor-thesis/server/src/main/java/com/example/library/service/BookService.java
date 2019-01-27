@@ -125,6 +125,11 @@ public class BookService {
         return book.getPrice();
     }
 
+    public String getAddressUrl(Long bookID) {
+        Book book = getBook(bookID);
+        return book.getDownloadedAddress();
+    }
+
 
     /*
     public void addBook(Book book) {
